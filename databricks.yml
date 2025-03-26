@@ -1,0 +1,20 @@
+bundle:
+  name: template_bundle
+
+include:
+  - resources/*.yml
+
+variables:
+  env:
+    description: to determine environment
+    default: dev
+
+targets:
+  dev:
+    workspace:
+      host: https://adb-777862349969176.16.azuredatabricks.net/
+  
+  test:
+    workspace:
+      host: https://adb-777862349969176.16.azuredatabricks.net/
+  
