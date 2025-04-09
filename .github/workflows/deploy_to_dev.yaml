@@ -11,7 +11,7 @@ env:
 
 jobs:
   deploy:
-    environment: "Configure Configure Dev"
+    environment: dev
     name: "Deploy bundle new"
     runs-on: ubuntu-latest
 
