@@ -1,0 +1,15 @@
+resources:
+  jobs:
+    job1:
+      name: (${bundle.target}) job_name
+      tasks:
+        - task_key: Task1
+          notebook_task:
+            notebook_path: ../src/notebooks/notebook1.ipynb
+            base_parameters:
+              env: ${var.env}
+              value1: 15
+              value2: 10
+            source: WORKSPACE
+      queue:
+        enabled: true
