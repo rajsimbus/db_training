@@ -1,23 +1,40 @@
-bundle:
-  name: dev_vamsi_bundle
+name: deploy_to_dev
 
-include:
-  - resources/*.yml
+concurrency: 1
 
-variables:
-  env:
-    description: to determine environment
-    default: dev
+on:
+  workflow_dispatch
 
-targets:
-  dev:
-    workspace:
-      host: https://adb-777862349969176.16.azuredatabricks.net/
-    permissions:
-      - user_name: yogitha.lakshmi@simbustech.com
-        level: CAN_MANAGE
-  
-  test:
-    workspace:
-      host: https://adb-777862349969176.16.azuredatabricks.net/
-  
+env:
+  DATABRICKS_HOST: ${{vars.HOST}}
+  DATABRICKS_TOKEN: ${{secrets.TOKEN}}
+
+jobs:
+  deploy:
+    environment: dev
+    name: "Deploy bundle new"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        
+      - uses: databricks/setup-cli@main
+
+    ##  - run: |
+    ##      databricks auth login --host ${{ vars.DATABRICKS_HOST }}
+    ##
+
+      - run: |
+          databricks bundle validate
+        env:
+          DATABRICKS_HOST: ${{vars.HOST}}
+          DATABRICKS_TOKEN: ${{secrets.TOKEN}}
+          DATABRICKS_BUNDLE_ENV: dev
+
+      - run: |
+          databricks bundle deploy
+        env:
+          DATABRICKS_HOST: ${{vars.HOST}}
+          DATABRICKS_TOKEN: ${{secrets.TOKEN}}
+          DATABRICKS_BUNDLE_ENV: dev
+         
