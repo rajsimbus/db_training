@@ -11,7 +11,7 @@ env:
 
 jobs:
   deploy:
-    environment: dev
+    environment: "Configure Configure Dev"
     name: "Deploy bundle new"
     runs-on: ubuntu-latest
 
@@ -29,7 +29,7 @@ jobs:
         env:
           DATABRICKS_HOST: ${{vars.HOST}}
           DATABRICKS_TOKEN: ${{secrets.TOKEN}}
-          DATABRICKS_BUNDLE_ENV: dev
+          DATABRICKS_BUNDLE_ENV: "dev"
 
       - run: |
           databricks bundle deploy
