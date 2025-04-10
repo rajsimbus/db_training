@@ -6,9 +6,9 @@ on:
   workflow_dispatch
 
 env:
-  DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
   ARM_CLIENT_ID: ${{ secrets.SPN_CLIENT_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.SPN_CLIENT_SECRET }}
+  ARM_CLIENT_SECRET: ${{ secrets.SPN_SECRET_ID }}
   ARM_TENANT_ID: ${{ secrets.TENANT_ID}}
 
 jobs:
